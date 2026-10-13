@@ -1,5 +1,27 @@
 <?php defined('BLUDIT') or die('Bludit CMS.'); ?>
 {
+    "autosave-f8309a8ddb5e1bdb1d62f236feb0603d": {
+        "title": "Home[Autosave]",
+        "description": "",
+        "username": "nyadmin",
+        "tags": [],
+        "type": "autosave",
+        "date": "2026-10-13 14:19:49",
+        "dateModified": "",
+        "position": 0,
+        "coverImage": "",
+        "category": "",
+        "md5file": "55c490a691b6d5b40c60329360f9dc80",
+        "uuid": "autosave-f8309a8ddb5e1bdb1d62f236feb0603d",
+        "allowComments": true,
+        "template": "",
+        "noindex": false,
+        "nofollow": false,
+        "noarchive": false,
+        "custom": [
+            false
+        ]
+    },
     "autosave-9bc396099430221fa81a562a0a9bcb7d": {
         "title": "About[Autosave]",
         "description": "",
@@ -579,34 +601,6 @@
             }
         }
     },
-    "autosave-f8309a8ddb5e1bdb1d62f236feb0603d": {
-        "title": "Home[Autosave]",
-        "description": "",
-        "username": "nyadmin",
-        "tags": [],
-        "type": "autosave",
-        "date": "2026-03-06 13:11:04",
-        "dateModified": "2026-10-09 12:36:02",
-        "position": 0,
-        "coverImage": "",
-        "category": "",
-        "md5file": "0130565c9f069a98142dad5bec363d28",
-        "uuid": "autosave-f8309a8ddb5e1bdb1d62f236feb0603d",
-        "allowComments": true,
-        "template": "",
-        "noindex": false,
-        "nofollow": false,
-        "noarchive": false,
-        "custom": {
-            "0": false,
-            "subtitle": {
-                "value": ""
-            },
-            "externalUrl": {
-                "value": ""
-            }
-        }
-    },
     "services\/accessible-web-design-and-development": {
         "title": "Accessible Web Design and Development",
         "description": "Custom websites designed and built to meet WCAG 2.2 AA from the start, with usability and performance at the core of every decision.",
@@ -942,11 +936,11 @@
         "tags": [],
         "type": "published",
         "date": "2025-10-11 11:11:05",
-        "dateModified": "2026-03-06 13:09:04",
+        "dateModified": "2026-10-13 14:17:49",
         "position": 2,
         "coverImage": "",
         "category": "",
-        "md5file": "0130565c9f069a98142dad5bec363d28",
+        "md5file": "55c490a691b6d5b40c60329360f9dc80",
         "uuid": "f8309a8ddb5e1bdb1d62f236feb0603d",
         "allowComments": true,
         "template": "",
