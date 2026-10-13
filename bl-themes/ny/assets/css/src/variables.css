@@ -55,23 +55,21 @@
 /* Tablet (landscape) / Small laptop */
 @media screen and (max-width: 992px) {
     :root {
-        --body-font-size-md: 1.8rem;
-        --body-font-size-lg: 1.9rem;
+        --body-font-size-lg: 2.0rem;
         --body-font-size-xl: 2.6rem;
 
         --font-size-sm: 1.3rem;
         --font-size-base: 1.5rem;
-        --font-size-md: 1.8rem;
         --font-size-ml: 2.2rem;
         --font-size-lg: 2.9rem;
         --font-size-xl: 3.7rem;
-        --font-size-xxl: 4.9rem;
+        --font-size-xxl: 4.3rem;
         --font-size-xxxl: 6.6rem;
     }
 }
 
 /* Mobile */
-@media screen and (max-width: 480px) {
+/* @media screen and (max-width: 480px) {
     :root {
         --body-font-size-md: 1.7rem;
         --body-font-size-lg: 1.8rem;
@@ -85,4 +83,4 @@
         --font-size-xxl: 3.9rem;
         --font-size-xxxl: 5.0rem;
     }
-}
+} */
