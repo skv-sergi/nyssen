@@ -1,3 +1,13 @@
+<?php
+include(THEME_DIR_PHP . 'blog-helpers.php');
+
+// The homepage only shows the Home page. Bludit puts every published page in
+// $content there, and blog posts are published pages too.
+if ($WHERE_AM_I == 'home') {
+    $content = array(new Page('home'));
+    $page = $content[0];
+}
+?>
 <!DOCTYPE html>
 <html lang="<?php echo Theme::lang() ?>">
 
@@ -13,13 +23,17 @@
 
     <?php // Open Graph / social preview (WhatsApp, LinkedIn, Facebook, Slack, X...)
     $isPage = ($WHERE_AM_I == 'page');
+    $isPost = $isPage && isBlogPost($page);
     $ogTitle = $isPage ? $page->title() : $site->slogan();
     $ogDescription = ($isPage && $page->description()) ? $page->description() : $site->description();
     $ogDescription = trim(preg_replace('/\s+/', ' ', $ogDescription));
     $ogUrl = $isPage ? $page->permalink() : DOMAIN_BASE;
     $ogImage = ($isPage && $page->coverImage()) ? $page->coverImage() : DOMAIN_THEME . 'assets/images/share.png';
     ?>
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="<?php echo $isPost ? 'article' : 'website'; ?>">
+    <?php if ($isPost): ?>
+    <meta property="article:published_time" content="<?php echo $page->date('c'); ?>">
+    <?php endif; ?>
     <meta property="og:site_name" content="Nyssen">
     <meta property="og:locale" content="en_GB">
     <meta property="og:title" content="<?php echo Sanitize::html($ogTitle); ?>">
@@ -39,7 +53,7 @@
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-precomposed.png">
 
-	<?php echo Theme::css('assets/css/style-min.css?ver=1.12'); ?>
+	<?php echo Theme::css('assets/css/style-min.css?ver=1.14'); ?>
 
     <!-- Prevent theme flash - applies saved theme before render (no saved theme = system theme) -->
     <script>
@@ -88,12 +102,18 @@
         $template = $page->template();
         $templateFile = THEME_DIR_PHP . $template . '.php';
         
-        // Use custom template if it exists, otherwise use default page.php
+        // Use custom template if it exists, then the blog templates, otherwise use default page.php
         if (file_exists($templateFile)) {
             include($templateFile);
+        } elseif ($page->key() === BLOG_PAGE_KEY) {
+            include(THEME_DIR_PHP . 'blog.php');
+        } elseif (isBlogPost($page)) {
+            include(THEME_DIR_PHP . 'post.php');
         } else {
             include(THEME_DIR_PHP . 'page.php');
         }
+    } elseif ($WHERE_AM_I == 'tag' || $WHERE_AM_I == 'category') {
+        include(THEME_DIR_PHP . 'archive.php');
     } else {
         include(THEME_DIR_PHP . 'home.php');
     }

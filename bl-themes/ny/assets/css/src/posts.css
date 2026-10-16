@@ -1,0 +1,51 @@
+/*! Blog */
+/* ==========================================================================*/
+
+/* "Page 2 of 3" under the title of a list of posts */
+.page-title-page {
+    display: block;
+    margin-top: 1.5rem;
+    font-size: var(--font-size-md);
+    font-weight: 400;
+}
+
+/* Post date */
+.post-meta {
+    font-size: var(--font-size-base);
+    margin-bottom: 2rem;
+}
+
+/* Post lists (blog page, tag and category archives) */
+.post-list {
+    margin: 4rem 0 0 0;
+}
+
+.post-list li {
+    margin: 0 0 4rem 0;
+    padding-bottom: 2rem;
+    border-bottom: 0.15rem solid var(--font-color);
+}
+
+.page .post-summary__title {
+    font-size: var(--body-font-size-xl);
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+/* Single post */
+.post-header {
+    margin-bottom: 6rem;
+}
+
+.post-header .page-title {
+    margin-bottom: 2rem;
+}
+
+.post-header .post-meta {
+    margin-bottom: 0;
+}
+
+.post-footer {
+    margin-top: 6rem;
+}

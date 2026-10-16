@@ -21,7 +21,8 @@
                 'portfolio',
                 'accessibility-statement',
                 'ai-use-policy',
-                'elements'
+                'elements',
+                'blog' // Remove when the blog is ready to launch
                 ];
 
             // Home link (not a static page)
