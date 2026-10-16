@@ -14,6 +14,7 @@ The site is built and edited locally, then published by FTP (FileZilla). Bludit 
 - **Page content:** the changed `bl-content/pages/<slug>/index.txt` files.
 - **Media:** any new files in `bl-content/uploads/`, such as cover images in `uploads/pages/<page uuid>/`.
 - **Sitemap:** `sitemap.xml` in the site root is a static file, as Bludit's sitemap plugin only rebuilds when pages are saved in the live admin. When you add, remove or rename a public page, update `sitemap.xml` and upload it. Change a page's `<lastmod>` date when its content changes noticeably.
+- **Robots:** `robots.txt` in the site root is a static file. It replaces the Robots plugin's `robots.txt` setting, which only applies when there's no file. Keep the plugin active, as it adds the per-page `noindex`/`nofollow` tags. Upload `robots.txt` when you change it.
 - **Page list:** `bl-content/databases/pages.php`, only when you've added, removed or renamed a page locally, or changed its settings (title, description, template, position, cover image, status). It replaces the live page list, so don't upload it if pages were edited in the live admin.
 
 ## Never upload
