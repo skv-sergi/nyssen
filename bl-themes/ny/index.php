@@ -11,11 +11,33 @@
 
 	<?php echo Theme::metaTagDescription(); // Dynamic description tag ?>
 
+    <?php // Open Graph / social preview (WhatsApp, LinkedIn, Facebook, Slack, X...)
+    $isPage = ($WHERE_AM_I == 'page');
+    $ogTitle = $isPage ? $page->title() : $site->slogan();
+    $ogDescription = ($isPage && $page->description()) ? $page->description() : $site->description();
+    $ogDescription = trim(preg_replace('/\s+/', ' ', $ogDescription));
+    $ogUrl = $isPage ? $page->permalink() : DOMAIN_BASE;
+    $ogImage = ($isPage && $page->coverImage()) ? $page->coverImage() : DOMAIN_THEME . 'assets/images/share.png';
+    ?>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Nyssen">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:title" content="<?php echo Sanitize::html($ogTitle); ?>">
+    <meta property="og:description" content="<?php echo Sanitize::html($ogDescription); ?>">
+    <meta property="og:url" content="<?php echo $ogUrl; ?>">
+    <meta property="og:image" content="<?php echo $ogImage; ?>">
+    <?php if ($ogImage === DOMAIN_THEME . 'assets/images/share.png'): ?>
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Nyssen logo next to the text: Nyssen, Digital Accessibility Specialist and Consultant">
+    <?php endif; ?>
+    <meta name="twitter:card" content="summary_large_image">
+
 	<link rel="shortcut icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-precomposed.png">
 
 	<?php echo Theme::css('assets/css/style-min.css?ver=1.12'); ?>
 
