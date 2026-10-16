@@ -4,7 +4,7 @@
 
 This project is built with Bludit CMS. The main folder also contains two old static prototypes, `HTML/` and `HTML-v2/`, and a `/docs` folder.
 
-**Framework:** Bludit CMS v3.16.2 (flat-file CMS)
+**Framework:** Bludit CMS v3.22.0 (flat-file CMS)
 **Theme:** NY (custom minimalist theme)
 **Purpose:** Source for the live site https://nyssen.me/
 **Language:** PHP 5.6+
@@ -155,7 +155,7 @@ This project uses modern system font stacks (system-ui) for the best possible pe
 - Changes are published manually via FTP (FileZilla) to https://nyssen.me/
 - Changes are also committed to the GitHub repo (`origin`: github.com/nyssen-me/nyssen)
 - When finishing a task, list the changed files so they can be uploaded via FTP
-- See [DEPLOYMENT-NOTES.md](DEPLOYMENT-NOTES.md)
+- See [DEPLOYMENT-NOTES.md](DEPLOYMENT-NOTES.md), including how to update Bludit
 
 ## Testing Checklist
 

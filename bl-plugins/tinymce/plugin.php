@@ -11,9 +11,10 @@ class pluginTinymce extends Plugin
 	public function init()
 	{
 		$this->dbFields = array(
-			'toolbar1' => 'formatselect bold italic forecolor backcolor removeformat | bullist numlist table | blockquote alignleft aligncenter alignright | link unlink pagebreak image code',
+			'toolbar1' => 'blocks bold italic forecolor backcolor removeformat | bullist numlist table | blockquote alignleft aligncenter alignright | link pagebreak image media codesample code | fullscreen wordcount',
 			'toolbar2' => '',
-			'plugins' => 'code autolink image link pagebreak advlist lists textpattern table',
+			'contextmenu' => 'link image table',
+			'plugins' => 'code autolink image link pagebreak advlist lists table fullscreen media searchreplace wordcount emoticons charmap codesample',
 			'codesampleLanguages' => 'HTML/XML markup|JavaScript javascript|CSS css|PHP php|Ruby ruby|Python python|Java java|C c|C# sharp|C++ cpp'
 		);
 	}
@@ -34,6 +35,12 @@ class pluginTinymce extends Plugin
 		$html .= '<div>';
 		$html .= '<label>' . $L->get('toolbar-bottom') . '</label>';
 		$html .= '<input name="toolbar2" id="jstoolbar2" type="text" dir="auto" value="' . $this->getValue('toolbar2') . '">';
+		$html .= '</div>';
+
+		$html .= '<div>';
+		$html .= '<label>' . $L->get('context-menu') . '</label>';
+		$html .= '<input name="contextmenu" id="jscontextmenu" type="text" dir="auto" value="' . $this->getValue('contextmenu') . '">';
+		$html .= '<span class="tip">' . $L->get('context-menu-tip') . '</span>';
 		$html .= '</div>';
 
 		$html .= '<div>';
@@ -58,6 +65,7 @@ class pluginTinymce extends Plugin
 		if (!in_array($GLOBALS['ADMIN_CONTROLLER'], $this->loadOnController)) {
 			return false;
 		}
+
 		$html  = '<link rel="stylesheet" type="text/css" href="' . $this->htmlPath() . 'css/tinymce_toolbar.css">' . PHP_EOL;
 		$html .= '<script src="' . $this->htmlPath() . 'tinymce/tinymce.min.js?version=' . $this->version() . '"></script>';
 		return $html;
@@ -74,12 +82,17 @@ class pluginTinymce extends Plugin
 
 		$toolbar1 = $this->getValue('toolbar1');
 		$toolbar2 = $this->getValue('toolbar2');
+		// Combine toolbars for TinyMCE 6+
+		$toolbar = trim($toolbar1 . ' ' . $toolbar2);
+		$contextmenu = $this->getValue('contextmenu');
 		$content_css = $this->htmlPath() . 'css/tinymce_content.css';
 		$plugins = $this->getValue('plugins');
+		// Convert space-separated plugins to JavaScript array format
+		$pluginsArray = implode("', '", array_filter(explode(' ', $plugins)));
 		$version = $this->version();
 
+		$codesampleConfig = '';
 		if (strpos($this->getValue('plugins'), 'codesample') !== false) {
-			$codesampleConfig = '';
 			$codesampleLanguages = explode("|", $this->getValue('codesampleLanguages'));
 			foreach ($codesampleLanguages as $codesampleLang) {
 				$values = explode(" ", $codesampleLang);
@@ -106,13 +119,13 @@ class pluginTinymce extends Plugin
 	// Insert an image in the editor at the cursor position
 	// Function required for Bludit
 	function editorInsertMedia(filename) {
-		tinymce.activeEditor.insertContent("<img src=\""+filename+"\" alt=\"\">");
+		tinymce.activeEditor.insertContent("<img src=\""+filename+"\">");
 	}
 
 	// Insert a linked image in the editor at the cursor position
 	// Function required for Bludit
 	function editorInsertLinkedMedia(filename, link) {
-		tinymce.activeEditor.insertContent("<a href=\""+link+"\"><img src=\""+filename+"\" alt=\"\"></a>");
+		tinymce.activeEditor.insertContent("<a href=\""+link+"\"><img src=\""+filename+"\"></a>");
 	}
 
 	// Returns the content of the editor
@@ -139,13 +152,17 @@ class pluginTinymce extends Plugin
 		relative_urls: false,
 		valid_elements: "*[*]",
 		cache_suffix: "?version=$version",
+		license_key: "gpl",
+		promotion: false,
 		$document_base_url
-		plugins: ["$plugins"],
-		toolbar1: "$toolbar1",
-		toolbar2: "$toolbar2",
+		plugins: ['$pluginsArray'],
+		toolbar: "$toolbar",
 		language: "$lang",
+		contextmenu: "$contextmenu",
 		content_css: "$content_css",
 		codesample_languages: [$codesampleConfig],
+		image_description: true,
+		image_advtab: true
 	});
 
 </script>

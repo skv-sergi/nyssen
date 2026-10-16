@@ -12,11 +12,17 @@ class Image {
         // *** Open up the file
         $this->image = $this->openImage($fileName);
 
+        // *** Check if image was opened successfully
+        if ($this->image === false) {
+            return false;
+        }
+
         // *** Get width and height
         $this->width  = imagesx($this->image);
         $this->height = imagesy($this->image);
 
         $this->resizeImage($newWidth, $newHeight, $option);
+        return true;
     }
 
     public function saveImage($savePath, $imageQuality="100", $forceJPG=false, $forcePNG=false)
@@ -26,13 +32,13 @@ class Image {
         // Remove the extension
         $filename = substr($savePath, 0,strrpos($savePath,'.'));
 
-        $path_complete = $filename.'.'.$extension;
-
         if ($forcePNG) {
             $extension = 'png';
         } elseif ($forceJPG) {
             $extension = 'jpg';
         }
+
+        $path_complete = $filename.'.'.$extension;
 
         switch ($extension) {
             case 'jpg':
@@ -63,7 +69,7 @@ class Image {
                 }
                 break;
             case 'webp':
-                // Checking for JPG support
+                // Checking for WEBP support
                 if (imagetypes() & IMG_WEBP) {
                     imagewebp($this->imageResized, $path_complete, $imageQuality);
                 }
@@ -74,7 +80,6 @@ class Image {
                 break;
         }
 
-        imagedestroy($this->imageResized);
     }
 
     private function openImage($file)
@@ -82,19 +87,36 @@ class Image {
         // *** Get extension
         $extension = strtolower(strrchr($file, '.'));
 
+        // GD may be compiled without support for some formats (often WebP, and
+        // sometimes JPEG on minimal builds). Guard each decoder with both a
+        // runtime capability check and a function_exists() check to avoid a
+        // fatal "call to undefined function" on stripped builds.
+        $types = imagetypes();
         switch($extension)
         {
             case '.jpg':
             case '.jpeg':
+                if (!($types & IMG_JPG) || !function_exists('imagecreatefromjpeg')) {
+                    return false;
+                }
                 $img = imagecreatefromjpeg($file);
                 break;
             case '.gif':
+                if (!($types & IMG_GIF) || !function_exists('imagecreatefromgif')) {
+                    return false;
+                }
                 $img = imagecreatefromgif($file);
                 break;
             case '.png':
+                if (!($types & IMG_PNG) || !function_exists('imagecreatefrompng')) {
+                    return false;
+                }
                 $img = imagecreatefrompng($file);
                 break;
             case '.webp':
+                if (!($types & IMG_WEBP) || !function_exists('imagecreatefromwebp')) {
+                    return false;
+                }
                 $img = imagecreatefromwebp($file);
                 break;
             default:
@@ -109,8 +131,8 @@ class Image {
         // *** Get optimal width and height - based on $option
         $optionArray = $this->getDimensions($newWidth, $newHeight, $option);
 
-        $optimalWidth  = $optionArray['optimalWidth'];
-        $optimalHeight = $optionArray['optimalHeight'];
+        $optimalWidth  = (int) $optionArray['optimalWidth'];
+        $optimalHeight = (int) $optionArray['optimalHeight'];
 
 
         // *** Resample - create image canvas of x, y size
@@ -155,6 +177,11 @@ class Image {
                 break;
             case 'crop':
                 $optionArray = $this->getOptimalCrop($newWidth, $newHeight);
+                $optimalWidth = $optionArray['optimalWidth'];
+                $optimalHeight = $optionArray['optimalHeight'];
+                break;
+            default:
+                $optionArray = $this->getSizeByAuto($newWidth, $newHeight);
                 $optimalWidth = $optionArray['optimalWidth'];
                 $optimalHeight = $optionArray['optimalHeight'];
                 break;
@@ -231,11 +258,10 @@ class Image {
     private function crop($optimalWidth, $optimalHeight, $newWidth, $newHeight)
     {
         // *** Find center - this will be used for the crop
-        $cropStartX = ( $optimalWidth / 2) - ( $newWidth /2 );
-        $cropStartY = ( $optimalHeight/ 2) - ( $newHeight/2 );
+        $cropStartX = (int) (( $optimalWidth / 2) - ( $newWidth /2 ));
+        $cropStartY = (int) (( $optimalHeight/ 2) - ( $newHeight/2 ));
 
         $crop = $this->imageResized;
-        //imagedestroy($this->imageResized);
 
         // *** Now crop from center to exact requested size
         $this->imageResized = imagecreatetruecolor($newWidth , $newHeight);

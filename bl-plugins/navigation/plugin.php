@@ -24,7 +24,7 @@ class pluginNavigation extends Plugin
 
 		$html .= '<div>';
 		$html .= '<label>' . $L->get('Label') . '</label>';
-		$html .= '<input id="jslabel" name="label" type="text" dir="auto" value="' . $this->getValue('label') . '">';
+		$html .= '<input id="jslabel" name="label" type="text" dir="auto" value="' . htmlspecialchars($this->getValue('label'), ENT_QUOTES, 'UTF-8') . '">';
 		$html .= '<span class="tip">' . $L->get('This title is almost always used in the sidebar of the site') . '</span>';
 		$html .= '</div>';
 
@@ -61,7 +61,7 @@ class pluginNavigation extends Plugin
 		// Print the label if not empty
 		$label = $this->getValue('label');
 		if (!empty($label)) {
-			$html .= '<h2 class="plugin-label">' . $label . '</h2>';
+			$html .= '<h2 class="plugin-label">' . htmlspecialchars($L->g($label), ENT_QUOTES, 'UTF-8') . '</h2>';
 		}
 
 		$html .= '<div class="plugin-content">';

@@ -8,7 +8,7 @@ NY is a simple and minimalistic theme based on [Moran](https://github.com/echenl
 - Static pages are automatically added to the navbar
 
 ## Compatible
-- Bludit v3.x
+- Bludit v3.x (tested with v3.22.0)
 
 ## Author
 - Nyssen.

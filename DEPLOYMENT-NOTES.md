@@ -25,7 +25,7 @@ These files are different on each server. Uploading the local copies breaks the 
 - `bl-content/databases/security.php` and `syslog.php`: login security and logs.
 - `bl-content/databases/plugins/`: plugin settings, which may hold credentials (for example `contact3`).
 - `bl-content/workspaces/` and `bl-content/tmp/`: runtime data and temporary files.
-- `bl-kernel/`, `bl-plugins/`, `bl-languages/`: Bludit core. Only upload these when updating Bludit itself.
+- `bl-kernel/`, `bl-plugins/`, `bl-languages/`: Bludit core. Only upload these when updating Bludit itself (see [Updating Bludit](#updating-bludit)).
 
 ## If the live site shows local URLs
 
@@ -36,6 +36,18 @@ If pages load without styles, or the browser console shows "Mixed Content" with 
 3. Upload it and hard-refresh the browser (Ctrl+F5).
 
 The live site URL also decides the canonical tags (Canonical plugin), so use the domain search engines should see.
+
+## Updating Bludit
+
+The site runs Bludit v3.22.0, updated from v3.16.2 in October 2026. The installed version is in `bl-kernel/boot/init.php` (`BLUDIT_VERSION`). Check the [release notes](https://github.com/bludit/bludit/releases) now and then, and update when a release fixes security issues.
+
+1. Back up: commit the current state to git, copy the local folder, and download the live `bl-content/` by FTP.
+2. Download the new release from [bludit.com](https://www.bludit.com/) and extract it.
+3. Copy these over the local files: `bl-kernel/`, `bl-plugins/`, `bl-languages/`, `bl-themes/alternative/`, `index.php` and `install.php`. Copy over the old folders rather than deleting them first, so the third-party `contact3` plugin in `bl-plugins/` is kept.
+4. Don't touch `bl-content/` or `bl-themes/ny/`. The release has neither of them.
+5. Log in at `http://nyssen/admin` and check the settings. Bludit updates `currentBuild` in `site.php` when you do, which is expected. Then test the pages, the contact form (`contact3`), and both themes.
+6. Upload the same folders and files to the live site. Still never upload `bl-content/databases/`. Log in to the live admin and run the same checks.
+7. Update the version in this file and in `CLAUDE.md`, then commit.
 
 ## After each upload
 

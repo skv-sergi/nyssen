@@ -48,13 +48,32 @@ class pluginCustomFieldsParser extends Plugin {
 		$database = json_decode($jsondb, true);
 		$parsedCode = array();
 
-		foreach ($database as $field=>$code) {
-			$value = $page->custom($field);
-			$parsedCode['{{ '.$field.' }}'] = str_replace('{{ value }}', $value, $code);
+		// Ensure $database is a valid array before iterating
+		if (is_array($database)) {
+			foreach ($database as $field=>$code) {
+				$value = $page->custom($field);
+				$parsedCode['{{ '.$field.' }}'] = str_replace('{{ value }}', $value, $code);
+			}
 		}
 
 		$content = $page->contentRaw();
-		return str_replace(array_keys($parsedCode), array_values($parsedCode), $content);
+		if (!empty($parsedCode)) {
+			$content = str_replace(array_keys($parsedCode), array_values($parsedCode), $content);
+		}
+
+		// Parse Markdown
+		if (MARKDOWN_PARSER) {
+			$parsedown = new Parsedown();
+			$content = $parsedown->text($content);
+		}
+
+		// Parse img src relative to absolute (with domain)
+		if (IMAGE_RELATIVE_TO_ABSOLUTE) {
+			$domain = IMAGE_RESTRICT ? DOMAIN_UPLOADS_PAGES . $page->uuid() . '/' : DOMAIN_UPLOADS;
+			$content = Text::imgRel2Abs($content, $domain);
+		}
+
+		return $content;
 	}
 
 	public function beforeSiteLoad()
@@ -65,7 +84,9 @@ class pluginCustomFieldsParser extends Plugin {
 			foreach ($GLOBALS['content'] as $key=>$page)  {
 				$GLOBALS['content'][$key]->setField('content', $this->parse($GLOBALS['content'][$key]));
 			}
-			$GLOBALS['page'] = $GLOBALS['content'][0];
+			if (!empty($GLOBALS['content'])) {
+				$GLOBALS['page'] = $GLOBALS['content'][0];
+			}
 		}
 	}
 }

@@ -43,6 +43,12 @@ class Login
 		if (Session::get('fingerPrint') === $this->fingerPrint()) {
 			$username = Session::get('username');
 			if (!empty($username)) {
+				$userDB = $this->users->getUserDB($username);
+				if ($userDB === false || $userDB['password'] === '!') {
+					Log::set(__METHOD__ . LOG_SEP . 'User no longer exists or is disabled, destroying the session.');
+					Session::destroy();
+					return false;
+				}
 				return true;
 			} else {
 				Log::set(__METHOD__ . LOG_SEP . 'Session username empty, destroying the session.');
@@ -58,6 +64,9 @@ class Login
 	// Set the session for the user logged
 	public function setLogin($username, $role)
 	{
+		// Regenerate session ID to prevent session fixation attacks
+		session_regenerate_id(true);
+		
 		Session::set('username',	$username);
 		Session::set('role', 		$role);
 		Session::set('fingerPrint',	$this->fingerPrint());

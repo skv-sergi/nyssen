@@ -11,7 +11,7 @@ class Page
 
 		$this->vars['key'] = $key;
 
-		// If key is FALSE, the page is create with default values, like an empty page
+		// If key is FALSE, the page is created with default values, like an empty page
 		// Useful for Page Not Found
 		if ($key === false) {
 			$row = $pages->getDefaultFields();
@@ -53,7 +53,13 @@ class Page
 	public function contentRaw($sanitize = false)
 	{
 		$key = $this->key();
+		if (empty($key)) {
+			return '';
+		}
 		$filePath = PATH_PAGES . $key . DS . FILENAME;
+		if (!file_exists($filePath)) {
+			return '';
+		}
 		$contentRaw = file_get_contents($filePath);
 
 		if ($sanitize) {
@@ -547,11 +553,11 @@ class Page
         	$current = new DateTime;
 	        $past    = new DateTime($this->getValue('dateRaw'));
 	        $elapsed = $current->diff($past);
-	
+
 	        // Calculate weeks separately
 	        $weeks = floor($elapsed->d / 7);
 	        $elapsed->d -= $weeks * 7;
-	
+
 	        $string = array(
 	            'y' => 'year',
 	            'm' => 'month',
@@ -575,15 +581,15 @@ class Page
 	                unset($string[$key]);
 	            }
 	        }
-	
+
 	        if (!$complete) {
 	            $string = array_slice($string, 0, 1);
 	        }
-	
+
 	        return $string ? implode(', ', $string) . ' ago' : 'Just now';
     	}
 
-	// Returns the value from the field, false if the fields doesn't exists
+	// Returns the value from the field, false if the fields don't exist
 	// If you set the $option as TRUE, the function returns an array with all the values of the field
 	public function custom($field, $options = false)
 	{
