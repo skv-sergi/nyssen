@@ -277,6 +277,21 @@ ul {
     margin-bottom: 2.5rem;
 }
 
+/* Captioned images in page content */
+figure {
+    margin: 4rem 0;
+}
+
+figure img {
+    display: block;
+}
+
+figcaption {
+    margin-top: 1.2rem;
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+}
+
 table {
     border-spacing: 0;
     display: block;
