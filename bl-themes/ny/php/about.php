@@ -1,4 +1,4 @@
-<main id="maincontent" class="wrapper">
+<main id="maincontent" class="wrapper page">
 
     <section>
         <div class="container container-narrow padding-short">
@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row reverse">
                 <div class="column">
                 
                     <?php // Remove the page break and the <p> TinyMCE wraps it in ?>
@@ -44,8 +44,6 @@
 
             <div class="row">
                 <div class="column">
-
-                    <h2 id="gallery-title" class="section-title">Photos</h2>
 
                     <?php include(THEME_DIR_PHP . 'partials' . DS . 'gallery.php'); ?>
 
