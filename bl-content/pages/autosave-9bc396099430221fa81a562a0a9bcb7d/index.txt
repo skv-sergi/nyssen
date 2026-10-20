@@ -1,8 +1,15 @@
 <p><!-- pagebreak --></p>
 <p>I'm Sergi Duran Nyssen, and I make accessible websites and documents and help teams do the same.</p>
-<p>I have spent more than two decades designing and building websites. When I started, most sites were still made with tables. Then responsive design appeared: content on one side, styling on the other. This separation felt right to me from the beginning. I specialised in responsive design and later moved to Cape Town to work as a responsive web design specialist.</p>
-<p>After a short time in London I spent a few years freelancing in sunny <a href="https://en.wikipedia.org/wiki/Empord%C3%A0">Empordà</a>, in the north-east of Catalonia, and then the UK, where I’ve worked for a couple of agencies and built dozens of websites, always with accessibility in mind, even before I knew the word for it.</p>
-<p>Over the years, I’ve come to see it like this. Responsive design makes a website adapt to the device. Accessibility makes it adapt to the person. For me, it’s the same path, one step further.</p>
-<p>Today I focus fully on digital accessibility. I help organisations create websites and documents that work for everyone, run accessibility tests and audits, and train teams on how to design and write accessibly.</p>
-<p class="MsoNormal">Outside work I enjoy walking, photography, cycling, mountain hiking, cooking, and spending time with family and friends.<o:p></o:p></p>
-<p>Here are a few photographs of places, moments and things that mean something special to me.</p>
+<p>I've spent more than two decades designing and building websites. When I started, most websites were still built using tables. Then responsive web design emerged, and I quickly realised it was the way forward. I specialised in it and later moved to Cape Town to work as a responsive web design specialist.</p>
+<p>After a short time in London I spent a few years running my own company in sunny <a href="https://en.wikipedia.org/wiki/Empord%C3%A0">Empordà</a>, in the north-east of Catalonia, and then the UK, where I’ve worked for a couple of agencies and built dozens of websites, always with accessibility in mind, even before I knew the word for it.</p>
+<p>Today, I focus fully on digital accessibility. I help organisations create websites and documents that work for everyone, run accessibility tests and audits, and train teams on to design and write accessibly.</p>
+<h2>Why Nyssen?</h2>
+<p>My website and project are called Nyssen, in memory of my grandfather, who was a professional photographer. He introduced me to the fascinating world of photography, and later, sadly, to the world of accessibility, when he lost his sight to glaucoma shortly after retiring.</p>
+<p>Through him, I learned how challenging everyday life can be for a blind person. But I also learned something else: making things accessible doesn't have to be difficult. Sometimes, it simply starts with being aware of other people's circumstances and thinking about the people who will use our products and services.</p>
+<figure><img src="http://nyssen/bl-content/uploads/pages/9bc396099430221fa81a562a0a9bcb7d/juli-nyssen-linkedin-warm-webp.webp" width="700" height="875" alt="Old black and white studio portrait of my grandfather, Juli Nyssen, as a young man. He has slicked-back hair and wears a dark suit, a striped shirt and tie, and a pocket square. He looks to the side, holding a cigarette, with a large ring on his finger.">
+<figcaption>This is my grandfather as a young man, in the family photography studio in Barcelona, where they initially had the Nyssen photography shop. I think he’s pretending to be a Hollywood star. And he’s also pretending to smoke, that’s for sure. He never smoked. His father was a very heavy smoker and he hated it.</figcaption>
+</figure>
+<p>And that's what I want this project to be about: making the digital world more accessible to everyone.</p>
+<h2>A little more about me</h2>
+<p>Outside work I enjoy walking, photography, cycling, mountain hiking, cooking, and spending time with family and friends.</p>
+<p>Here are some images, mostly my own photographs, of places, moments and things that mean something special to me.</p>
