@@ -35,11 +35,12 @@
 
 /* Single post */
 .post-header {
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
 }
 
 .post-header .page-title {
     margin-bottom: 2rem;
+    max-width: 100%;
 }
 
 .post-header .post-meta {
@@ -48,4 +49,11 @@
 
 .post-footer {
     margin-top: 6rem;
+}
+
+.post svg {
+    width: 100%;
+    height: auto;
+    margin: 2rem auto;
+    color: var(--accent-color);
 }

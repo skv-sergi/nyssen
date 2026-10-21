@@ -9,11 +9,12 @@ $newerPost = ($postIndex !== false && $postIndex > 0) ? $blogPosts[$postIndex - 
 $olderPost = ($postIndex !== false && $postIndex < count($blogPosts) - 1) ? $blogPosts[$postIndex + 1] : null;
 $postTags = $page->tags(true);
 ?>
-<main id="maincontent" class="wrapper page">
+<main id="maincontent" class="wrapper post">
 
     <section>
         <div class="container container-x-narrow padding-short">
             <div class="row">
+                <div class="column column-7"></div>
                 <div class="column">
 
                     <?php Theme::plugins('pageBegin'); // Load Bludit Plugins: Page Begin ?>
@@ -22,7 +23,7 @@ $postTags = $page->tags(true);
 
                         <header class="post-header">
                             <h1 class="page-title"><?php echo $page->title(); ?></h1>
-                            <p class="post-meta"><time datetime="<?php echo $page->date('Y-m-d'); ?>"><?php echo $page->date(); ?></time></p>
+                            <p class="post-meta"><time datetime="<?php echo $page->date('Y-m-d'); ?>"><?php echo $page->date(); ?></time><?php if ($page->category()): ?> in <a href="<?php echo $page->categoryPermalink(); ?>"><?php echo $page->category(); ?></a><?php endif; ?></p>
                         </header>
 
                         <?php if ($page->coverImage()): ?>
@@ -61,6 +62,7 @@ $postTags = $page->tags(true);
                     <?php endif; ?>
 
                 </div>
+                <div class="column column-7"></div>
             </div>
         </div>
     </section>
