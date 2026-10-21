@@ -1,2 +1,2 @@
 <?php defined('BLUDIT') or die('Bludit CMS.'); ?>
-{"general":{"name":"General","description":"","template":"","list":["about"]},"music":{"name":"Music","description":"","template":"","list":[]},"videos":{"name":"Videos","description":"","template":"","list":[]}}
+{"general":{"name":"General","description":"","template":"","list":["blog\/test-post"]},"opinion":{"name":"Opinion","template":"","description":"","list":["blog\/test-post-no-image"]},"personal":{"name":"Personal","template":"","description":"","list":["about"]},"resources":{"name":"Resources","template":"","description":"","list":[]},"tools-and-tips":{"name":"Tools and tips","template":"","description":"","list":[]}}
