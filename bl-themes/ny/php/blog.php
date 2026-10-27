@@ -31,7 +31,7 @@ $postList = array_slice($blogPosts, ($postsPageNumber - 1) * $postsPerPage, $pos
 
                     <?php if ($postsPageNumber == 1): // Intro only on the first page ?>
                         <?php if ($page->coverImage()): ?>
-                        <img class="cover-image" src="<?php echo $page->coverImage(); ?>" alt="">
+                        <img class="cover-image" src="<?php echo $page->coverImage(); ?>" alt="<?php echo $page->custom('coverImageAlt'); ?>">
                         <?php endif ?>
 
                         <?php if ($page->content()): ?>

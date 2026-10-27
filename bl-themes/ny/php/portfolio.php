@@ -10,7 +10,7 @@
         
         <!-- Page cover image -->
         <?php if ($page->coverImage()): ?>
-        <img class="cover-image" src="<?php echo $page->coverImage(); ?>" alt="">
+        <img class="cover-image" src="<?php echo $page->coverImage(); ?>" alt="<?php echo $page->custom('coverImageAlt'); ?>">
         <?php endif ?>
     
         <!-- Page content -->

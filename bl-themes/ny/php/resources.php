@@ -10,7 +10,7 @@
                     <h1 class="page-title"><?php echo $page->title(); ?></h1>
                     
                     <?php if ($page->coverImage()): ?>
-                    <img class="cover-image" src="<?php echo $page->coverImage(); ?>" alt="">
+                    <img class="cover-image" src="<?php echo $page->coverImage(); ?>" alt="<?php echo $page->custom('coverImageAlt'); ?>">
                     <?php endif ?>
                 
                     <div class="page-content"><?php echo $page->content(); ?></div>

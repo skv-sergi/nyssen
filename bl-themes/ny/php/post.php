@@ -27,7 +27,7 @@ $postTags = $page->tags(true);
                         </header>
 
                         <?php if ($page->coverImage()): ?>
-                        <img class="cover-image" src="<?php echo $page->coverImage(); ?>" alt="">
+                        <img class="cover-image" src="<?php echo $page->coverImage(); ?>" alt="<?php echo $page->custom('coverImageAlt'); ?>">
                         <?php endif ?>
 
                         <div class="page-content"><?php echo $page->content(); ?></div>
