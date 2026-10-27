@@ -7,6 +7,19 @@ if ($WHERE_AM_I == 'home') {
     $content = array(new Page('home'));
     $page = $content[0];
 }
+
+// The editor's Preview button shows an "autosave-<uuid>" copy that only has the
+// title and content. Show the real page with those two fields instead, so the
+// preview keeps its parent, template, date, cover image, category and tags.
+if ($WHERE_AM_I == 'page' && $page->autosave()) {
+    $originalKey = $pages->getByUUID(substr($page->uuid(), strlen('autosave-')));
+    if ($originalKey) {
+        $preview = new Page($originalKey);
+        $preview->setField('title', $page->title());
+        $preview->setField('content', $page->content());
+        $page = $preview;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo Theme::lang() ?>">

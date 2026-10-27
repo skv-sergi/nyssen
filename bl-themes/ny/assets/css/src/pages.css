@@ -353,7 +353,7 @@
     width: 50%;
     max-width: 700px;
 }
-/* Page cover image (decorative, responsive) */
+/* Page cover image (alt text from the "coverImageAlt" custom field, empty = decorative) */
 .cover-image {
     display: block;
     margin-bottom: 4rem;

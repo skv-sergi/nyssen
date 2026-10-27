@@ -19,9 +19,9 @@ The site is built and edited locally, then published by FTP (FileZilla). Bludit 
 
 ## Never upload
 
-These files are different on each server. Uploading the local copies breaks the live site or replaces its logins.
+These files are different on each server. Uploading the local copies breaks the live site or replaces its logins. Upload the `bl-content/databases/` files listed above one by one, never the whole folder.
 
-- `bl-content/databases/site.php`: holds the site URL. The local copy says `http://nyssen`, and on the live site that turns every link and stylesheet into a local address (blocked as "Mixed Content").
+- `bl-content/databases/site.php`: holds the site URL. The local copy says `http://nyssen`, and on the live site that turns every link and stylesheet into a local address (blocked as "Mixed Content"). It also holds the site settings, including the custom fields (Settings → General → Custom fields). To change a setting on both sites, make the same change in the local and the live admin rather than uploading the file.
 - `bl-content/databases/users.php`: the admin login. The local copy would replace the live password.
 - `bl-content/databases/security.php` and `syslog.php`: login security and logs.
 - `bl-content/databases/plugins/`: plugin settings, which may hold credentials (for example `contact3`).
@@ -33,8 +33,13 @@ These files are different on each server. Uploading the local copies breaks the 
 If pages load without styles, or the browser console shows "Mixed Content" with `http://nyssen/...`, the local `site.php` was uploaded. To fix it:
 
 1. Download the live `bl-content/databases/site.php`.
-2. Set the URL line to `"url": "https:\/\/nyssen.me",`. Keep the escaped slashes and don't add a slash at the end.
+2. Change the URL to `"url":"https:\/\/nyssen.me"`. The file is one long line, so search for `"url":`. Keep the escaped slashes and don't add a slash at the end.
 3. Upload it and hard-refresh the browser (Ctrl+F5).
+
+If the whole `bl-content/databases/` folder was uploaded, the other [Never upload](#never-upload) files were replaced too. Also:
+
+- Log in to the live admin with the local password, and change it if the live one should be different.
+- Check the contact form (`contact3`) settings in the live admin and send a test message, as the local SMTP settings replaced the live ones.
 
 The live site URL also decides the canonical tags (Canonical plugin), so use the domain search engines should see.
 
