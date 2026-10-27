@@ -1,0 +1,22 @@
+<p>I had a brand palette with five colours. To check them with a normal contrast checker, I had to test 10 pairs, one by one.</p>
+<p>So I built a tool that checks them all at once.</p>
+<p>There are plenty of good contrast checkers out there, but they all do the same thing: one colour against another. When you work with a full palette, that means copying and pasting colour codes again and again, and it’s easy to miss a combination.</p>
+<p>I couldn’t find a tool that checks a whole palette the way I wanted, so I made one: the Accessible Colour Palette Contrast Checker.</p>
+<p>How it works:</p>
+<ul>
+<li>Add as many colours as you like. Type a HEX code or use the colour picker.</li>
+<li>Each colour gets a name automatically, like “Soft Butter”. Keep it or type your own.</li>
+<li>Reorder your colours by dragging them, or with the arrow buttons or keyboard.</li>
+<li>Choose WCAG level AA or AAA.</li>
+<li>See the results as cards (one card for each background colour) or as a table (every combination).</li>
+<li>Turn on “Only show passing pairs” to hide the pairs that fail every check.</li>
+</ul>
+<p>Every pair gets a clear pass or fail for normal text, large text, and things like icons, buttons and form borders.</p>
+<p>How it helps designers:</p>
+<ul>
+<li>You find problems early, before the design goes to development</li>
+<li>You can share your results with a link, so the whole team sees the same thing</li>
+<li>You can export the palette as CSS, ready for developers</li>
+</ul>
+<p>Try it with your own colours and tell me what you think:</p>
+<p><a href="https://accessiblepalette.uk/">https://accessiblepalette.uk/</a> </p>
