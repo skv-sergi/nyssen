@@ -28,7 +28,7 @@
                         array('file' => 'sergi-1.webp', 'alt' => 'Sergi Duran in a green corduroy cap and glasses, looking at the camera with wide eyes'),
                         array('file' => 'sergi-2.webp', 'alt' => 'Sergi Duran in glasses and a dark jacket, looking thoughtfully to the side'),
                         array('file' => 'sergi-3.webp', 'alt' => 'Sergi Duran in a grey flat cap, glasses and a light blue jumper, looking at the camera'),
-                        array('file' => 'sergi-4.webp', 'alt' => 'Sergi Duran in glasses and a light blue jumper, finger to the lips, deep in thought'),
+                        /* array('file' => 'sergi-4.webp', 'alt' => 'Sergi Duran in glasses and a light blue jumper, finger to the lips, deep in thought'), */
                     );
                     $profilePhoto = $profilePhotos[array_rand($profilePhotos)];
                     ?>
