@@ -117,6 +117,9 @@ if (!headers_sent()) {
         });
     </script>
 
+    <?php // Structured data (JSON-LD) about the business, the person and the current page
+    include(THEME_DIR_PHP . 'partials/structured-data.php'); ?>
+
 	<?php Theme::plugins('siteHead'); // Load Bludit Plugins: Site head ?>
 </head>
 

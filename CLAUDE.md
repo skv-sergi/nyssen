@@ -62,7 +62,7 @@ c:\wamp64\www\skv\nyssen\
 - [services.php](bl-themes/ny/php/services.php) - Services listing template
 - [single-service.php](bl-themes/ny/php/single-service.php) - Single service template
 - [blog.php](bl-themes/ny/php/blog.php), [post.php](bl-themes/ny/php/post.php), [archive.php](bl-themes/ny/php/archive.php) - Blog page, single post, tag/category archives. Posts are child pages of the static `blog` page, normally type Published ("- Default -" in the editor) (`/blog/post-slug`); [index.php](bl-themes/ny/index.php) picks these templates automatically. Helpers in [blog-helpers.php](bl-themes/ny/php/blog-helpers.php). Keep the Blog URL filter (Settings → Advanced) and the Homepage setting empty, or `/blog/...` URLs break.
-- [partials/](bl-themes/ny/php/partials/) - Reusable components (gallery, post list, post pagination)
+- [partials/](bl-themes/ny/php/partials/) - Reusable components (gallery, post list, post pagination, and [structured-data.php](bl-themes/ny/php/partials/structured-data.php): the JSON-LD for the business, the person, the About page and blog posts)
 - `header-old.php`, `home-old.php`, `home-old2.php` - Earlier versions, kept for reference. Do not delete or edit.
 
 **CSS Architecture** (imported in order by [style.css](bl-themes/ny/assets/css/style.css)):
