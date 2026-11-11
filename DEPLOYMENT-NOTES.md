@@ -15,6 +15,7 @@ The site is built and edited locally, then published by FTP (FileZilla). Bludit 
 - **Media:** any new files in `bl-content/uploads/`, such as cover images in `uploads/pages/<page uuid>/`.
 - **Sitemap:** `sitemap.xml` in the site root is a static file, as Bludit's sitemap plugin only rebuilds when pages are saved in the live admin. When you add, remove or rename a public page, update `sitemap.xml` and upload it. Change a page's `<lastmod>` date when its content changes noticeably.
 - **Robots:** `robots.txt` in the site root is a static file. It replaces the Robots plugin's `robots.txt` setting, which only applies when there's no file. Keep the plugin active, as it adds the per-page `noindex`/`nofollow` tags. Upload `robots.txt` when you change it.
+- **.htaccess:** the root `.htaccess` holds the `https://nyssen.me` redirects and the security headers. It's the same file on both servers (the redirects only apply to the `nyssen.me` host). After uploading it, check that https://nyssen.me/ loads, and that http://nyssen.me/ and https://www.nyssen.me/ redirect to it. If the site stops loading, upload the previous version from git.
 - **Page list:** `bl-content/databases/pages.php`, only when you've added, removed or renamed a page locally, or changed its settings (title, description, template, position, cover image, status). It replaces the live page list, so don't upload it if pages were edited in the live admin.
 
 ## Never upload
@@ -52,7 +53,7 @@ The site runs Bludit v3.22.0, updated from v3.16.2 in October 2026. The installe
 3. Copy these over the local files: `bl-kernel/`, `bl-plugins/`, `bl-languages/`, `bl-themes/alternative/`, `index.php` and `install.php`. Copy over the old folders rather than deleting them first, so the third-party `contact3` plugin in `bl-plugins/` is kept.
 4. Don't touch `bl-content/` or `bl-themes/ny/`. The release has neither of them.
 5. Log in at `http://nyssen/admin` and check the settings. Bludit updates `currentBuild` in `site.php` when you do, which is expected. Then test the pages, the contact form (`contact3`), and both themes.
-6. Upload the same folders and files to the live site. Still never upload `bl-content/databases/`. Log in to the live admin and run the same checks.
+6. Upload the same folders and files to the live site, except `install.php`. The live site doesn't need the installer, and anyone could use it to take over the site if `bl-content/databases/site.php` went missing. If it gets uploaded by mistake, delete it from the live site. Still never upload `bl-content/databases/`. Log in to the live admin and run the same checks.
 7. Update the version in this file and in `CLAUDE.md`, then commit.
 
 ## After each upload

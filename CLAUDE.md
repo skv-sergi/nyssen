@@ -78,6 +78,8 @@ New CSS files must be added as an `@import` in `style.css`.
 **JavaScript:**
 All JavaScript is inline in [bl-themes/ny/index.php](bl-themes/ny/index.php) as `<script>` blocks. Keep it that way whenever possible and avoid separate JS files.
 
+**Security headers:** the theme sends a Content-Security-Policy from the top of [index.php](bl-themes/ny/index.php). Every inline `<script>` needs `nonce="<?php echo $cspNonce; ?>"`, or the browser blocks it. Inline `onclick=""` style handlers are blocked too. Any new external script, image, font, embed or form target must have its host added to the policy. The other security headers (HSTS, nosniff, X-Frame-Options, Referrer-Policy, Permissions-Policy) and the `https://nyssen.me` redirects are in the root `.htaccess`.
+
 ### Content Structure
 
 **Location:** `bl-content/pages/`

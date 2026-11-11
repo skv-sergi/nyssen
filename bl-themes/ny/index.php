@@ -20,6 +20,25 @@ if ($WHERE_AM_I == 'page' && $page->autosave()) {
         $page = $preview;
     }
 }
+
+// Content Security Policy. Every inline <script> block needs a nonce attribute
+// that echoes $cspNonce, and new external scripts, images, fonts or embeds need their host added below.
+// The other security headers are in the root .htaccess.
+$cspNonce = base64_encode(function_exists('random_bytes') ? random_bytes(16) : openssl_random_pseudo_bytes(16));
+if (!headers_sent()) {
+    header("Content-Security-Policy: "
+        . "default-src 'self'; "
+        . "script-src 'self' 'nonce-" . $cspNonce . "' https://*.googletagmanager.com; "
+        . "style-src 'self' 'unsafe-inline'; "
+        // Google Analytics hosts. *.g.doubleclick.net and *.google.com are for Google Signals.
+        . "img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com; "
+        . "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com; "
+        . "font-src 'self'; "
+        . "object-src 'none'; "
+        . "base-uri 'self'; "
+        . "form-action 'self'; "
+        . "frame-ancestors 'self'");
+}
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo Theme::lang() ?>">
@@ -69,7 +88,7 @@ if ($WHERE_AM_I == 'page' && $page->autosave()) {
 	<?php echo Theme::css('assets/css/style-min.css?ver=1.15'); ?>
 
     <!-- Prevent theme flash - applies saved theme before render (no saved theme = system theme) -->
-    <script>
+    <script nonce="<?php echo $cspNonce; ?>">
         try {
             var theme = localStorage.getItem('theme');
             if (theme === 'light' || theme === 'dark') {
@@ -80,7 +99,7 @@ if ($WHERE_AM_I == 'page' && $page->autosave()) {
 
     <!-- Google tag (gtag.js), loaded once the page has finished loading so it doesn't slow down first paint.
          Calls to gtag() before then are queued in dataLayer and sent when the script arrives. -->
-    <script>
+    <script nonce="<?php echo $cspNonce; ?>">
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -137,7 +156,7 @@ if ($WHERE_AM_I == 'page' && $page->autosave()) {
     include(THEME_DIR_PHP.'footer.php'); ?>
 
 
-	<script>
+	<script nonce="<?php echo $cspNonce; ?>">
 
         // Theme switcher (light/dark, defaults to the system theme)
         (function() {
