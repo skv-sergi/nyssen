@@ -9,7 +9,7 @@
     <li>
         <article class="post-summary">
             <h2 class="post-summary__title"><a href="<?php echo $post->permalink(); ?>"><?php echo $post->title(); ?></a></h2>
-            <p class="post-meta"><time datetime="<?php echo $post->date('Y-m-d'); ?>"><?php echo $post->date(); ?></time></p>
+            <p class="post-meta"><time datetime="<?php echo $post->date('Y-m-d'); ?>"><?php echo $post->date(); ?></time><?php if ($post->category()): ?> in <a href="<?php echo $post->categoryPermalink(); ?>"><?php echo $post->category(); ?></a><?php endif; ?></p>
             <?php if ($postSummary !== ''): ?>
             <div class="post-summary__text"><?php echo $postSummary; ?></div>
             <?php endif; ?>
