@@ -206,6 +206,11 @@
     padding: 0;
 }
 
+.image-gallery.alt {
+    grid-template-columns: repeat(auto-fill, minmax(30rem,1fr));
+    max-width: 100%;
+}
+
 .image-gallery li {
     margin: 0;
 }
